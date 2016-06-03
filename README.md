@@ -45,6 +45,13 @@ The following instructions assume you have installed the dependencies above.
 4. Verify you can run the program that converts the mammograms. Run `./jpeg` (Linux users) or `./jpeg.exe` (Windows users). You should see some usage instructions printed to the screen. (You will never need to run this command directly, however, so you can ignore them.) If the program does not run, you may need to set the file to be executable (e.g., using the `chmod` command).
 5. Verify that Ruby was installed correctly. Run `ruby -e “p ‘Hello world!’”` (don’t miss the single quotes!). You should see “Hello world!” printed to the screen.
 
+The DDSM radiologist annotations and metadata (which includes all information provided about the annotations in the `.OVERLAY` files, such as the type of abnormality and its subtlety) are made available via the `get_ddsm_groundtruth.m` MATLAB function. Install this software as follows:
+
+6. Copy or move the file `get_ddsm_groundtruth.m` from the `dddm-software` directory to a directory in which you keep your MATLAB software (create such a directory if one does not exist).
+7. Start MATLAB.
+8. Add the directory into which you placed the `get_ddsm_groundtruth.m` file in step 1 to your MATLAB path (see [What Is the MATLAB Search Path?](http://uk.mathworks.com/help/MATLAB/MATLAB_env/what-is-the-MATLAB-search-path.html)).
+9. From the MATLAB command prompt, check that MATLAB can find the `get_ddsm_groundtruth.m` file by running `help get_ddsm_groundtruth`. MATLAB should print the documentation for the `get_ddsm_groundtruth` function.
+
 ## How to Obtain and Convert a DDSM Mammogram
 
 The software provided makes it simple to get a DDSM mammogram in a usable file format. The following example shows how we can get the mammogram `A_1141_1.LEFT_MLO` in PNG format. PNG format files can be read by a wide range of software, including MATLAB, Photoshop, and Windows itself. It is a lossless file format and offers good compression ratios. (Note, however, that each DDSM mammogram is about 40MB.)
@@ -52,9 +59,7 @@ The software provided makes it simple to get a DDSM mammogram in a usable file f
 To download and convert the mammogram `A_1141_1.LEFT_MLO` into PNG format:
 
 1. If you closed the terminal or Cygwin program, restart it and change to the `dddm-software` directory.
-2. Run `./get-ddsm-mammo A_1141_1.LEFT_MLO`.
-The mammogram will be downloaded and the converted file will be placed in the `ddsm-software` directory. The full (Unix) path to the file will be printed to the screen. You should probably move the resulting files to a more convenient directory.
-
+2. Run `./get-ddsm-mammo A_1141_1.LEFT_MLO`. The mammogram will be downloaded and the converted file will be placed in the `ddsm-software` directory. The full (Unix) path to the file will be printed to the screen. You should probably move the resulting files to a more convenient directory.
 3. View the downloaded and converted file. For example in Windows, double-click on the file.
 
 The `get-ddsm-mammo` step obtains and converts the mammogram named `A_1141_1.LEFT_MLO`. The program connects to the DDSM’s FTP server, downloads the corresponding “lossless” JPEG file, converts that file to a raw binary format, converts that file to a simple human-readable file format called PNM, converts that file to the desired PNG format, and finally deletes the “lossless” JPEG and all intermediate files. Because the DDSM files are large and conversion is processor intensive, it may take a nontrivial amount of time for the file to be downloaded and converted. Exactly how long depends on the speed of your Internet connection and how powerful your computer’s CPU is. When this software was originally written (c. 2006), it took about 3 minutes to download and convert a mammogram using a domestic 10Mbps cable modem and a 2006-vintage 2GHz Intel Core 2 Duo CPU. This will hopefully be appreciably faster for 2016-vintage Internet connections and CPUs.
@@ -65,12 +70,6 @@ Note that, as of c. 2006, the DDSM’s FTP server had a policy of allowing no mo
 
 ## How to Obtain DDSM Radiologist Annotations and Metadata
 
-The DDSM radiologist annotations and metadata (which includes all information provided about the annotations in the `.OVERLAY` files, such as the type of abnormality and its subtlety) are made available via the `get_ddsm_groundtruth.m` MATLAB function. You can install this software as follows:
-
-1. Copy or move the file `get_ddsm_groundtruth.m` from the `dddm-software` directory to a directory in which you keep your MATLAB software (create such a directory if one does not exist).
-2. Start MATLAB.
-3. Add the directory into which you placed the `get_ddsm_groundtruth.m` file in step 1 to your MATLAB path (see [What Is the MATLAB Search Path?](http://uk.mathworks.com/help/MATLAB/MATLAB_env/what-is-the-MATLAB-search-path.html)).
-4. From the MATLAB command prompt, check that MATLAB can find the `get_ddsm_groundtruth.m` file by running `help get_ddsm_groundtruth`. MATLAB should print the documentation for the `get_ddsm_groundtruth` function.
 For this example, we will obtain the annotations and metadata for the file `A_1580_1.LEFT_MLO`. This mammogram was chosen because it is an example of a non-trivial mammogram: it has multiple abnormalities (boundaries) and one of those has a core annotation. You can obtain ground truth (annotations and metadata) for this file as follows:
 
 1. Using your FTP client (such as Windows Explorer), connect to the DDSM FTP server at `figment.csee.usf.edu`. If prompted, use the username “anonymous” and an empty password.

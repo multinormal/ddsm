@@ -9,6 +9,8 @@ This file describes how to install and use software to:
 
 Please note that while this GitHub repository was published in June 2016, the included software, instructions below, and the PDF manual are now pretty old (as are the digitised mammograms!), and absolutely no support is offered. However, this software (at its original home) was still being downloaded around 100 times per month as of June 2016. Please also note that this GitHub repository is not affiliated with the DDSM project, and questions about the database should be directed to the [DDSM project’s maintainers at the University of South Florida](http://marathon.csee.usf.edu/Mammography/Database.html).
 
+While it may appear from the following description that the process of obtaining mammograms and their annotations is a highly manual process, the steps involved are presented to allow users to understand what is atually happening. The software is intended to be called by your own programs or scripts, as your workflow necessitates.
+
 ## Copyright, Licensing, Warranty, and Fitness for Use
 
 This repository contains software that is in the public domain, is publicly available, or has been specially adapted or developed to be used within the Windows and Cygwin environment. You are granted a non-exclusive license to use or modify the software for research purposes only. You are encouraged to submit pull requests if you can improve this software for the research community.
